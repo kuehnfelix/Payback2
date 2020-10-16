@@ -1,13 +1,8 @@
 package de.kuehnfelix.payback2.config;
 
-import com.mongodb.MongoClientURI;
 import de.kuehnfelix.payback2.Payback2;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Singleton that loads and stores all the config data.
@@ -36,7 +31,7 @@ public class Config {
         Payback2.getPlugin().saveConfig();
 
         db = new DB(
-                new MongoClientURI(cfg.getString("uri")),
+                cfg.getString("uri"),
                 cfg.getString("database"),
                 cfg.getString("collection")
         );
@@ -47,17 +42,17 @@ public class Config {
     }
 
     public class DB {
-        private MongoClientURI uri;
+        private String uri;
         private String database;
         private String collection;
 
-        public DB(MongoClientURI uri, String database, String collection) {
+        public DB(String uri, String database, String collection) {
             this.uri = uri;
             this.database = database;
             this.collection = collection;
         }
 
-        public MongoClientURI getUri() {
+        public String getUri() {
             return uri;
         }
 
