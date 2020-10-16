@@ -1,4 +1,4 @@
-package dekuehnfelix.payback2;
+package de.kuehnfelix.payback2;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
