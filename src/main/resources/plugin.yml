@@ -1,7 +1,7 @@
 name: Payback2
 version: ${project.version}
-main: dekuehnfelix.payback2.Payback2
+main: de.kuehnfelix.payback2.Payback2
 api-version: 1.16
-prefix: [Payback2]
+prefix: Payback2
 authors: [Felix]
 description: This is the plugin for a Minecraft Project similar to "VaRo"
