@@ -1,10 +1,9 @@
 package de.kuehnfelix.payback2;
 
 import de.kuehnfelix.payback2.config.Config;
-import org.bukkit.Bukkit;
+import de.kuehnfelix.payback2.database.Database;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.logging.Level;
 
 public final class Payback2 extends JavaPlugin {
 
@@ -14,6 +13,13 @@ public final class Payback2 extends JavaPlugin {
     public void onEnable() {
         plugin = this;
         Config.getConfig().loadConfig();
+        Config.DB db = Config.getConfig().getDb();
+        Database.openConnection(db.getUri(), db.getDatabase(), db.getCollection());
+    }
+
+    @Override
+    public void onDisable() {
+        Database.closeConnection();
     }
 
     public static Payback2 getPlugin() {
