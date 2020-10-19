@@ -6,9 +6,12 @@ import com.mongodb.reactivestreams.client.MongoClient;
 import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoCollection;
 import com.mongodb.reactivestreams.client.MongoDatabase;
-import de.kuehnfelix.payback2.database.tests.DBTeam;
+import de.kuehnfelix.payback2.Payback2;
+import de.kuehnfelix.payback2.database.representation.DBTeam;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+
+import java.util.logging.Level;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -37,6 +40,7 @@ public class Database {
         Database.mongoClient = MongoClients.create(settings);
         Database.database = mongoClient.getDatabase(database);
         Database.collection = Database.database.getCollection(collection, DBTeam.class);
+        Payback2.getPlugin().getLogger().log(Level.INFO, "Payback2 has successfully connected to the database!");
     }
 
     public static void closeConnection() {
