@@ -1,0 +1,124 @@
+package de.kuehnfelix.payback2.database.representation;
+
+import org.bukkit.Location;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DBPlayer {
+    private String id;
+    private Location location;
+    private int folgen;
+    private boolean clearInv;
+    private boolean alive;
+    private int strikes;
+    private DBTeam team;
+    private List<DBPlayer> killed;
+
+    public DBPlayer(String name, Location location, int folgen, boolean clearInv, boolean alive, int strikes, DBTeam team, List<DBPlayer> killed) {
+        this.id = name;
+        this.location = location;
+        this.folgen = folgen;
+        this.clearInv = clearInv;
+        this.alive = alive;
+        this.strikes = strikes;
+        this.team = team;
+        this.killed = killed;
+    }
+
+    public DBPlayer(String name) {
+        this.id = name;
+        location = new Location(null, 0,0,0);
+        folgen = 0;
+        clearInv = false;
+        alive = true;
+        strikes = 0;
+        team = null;
+        killed = new ArrayList<>();
+    }
+
+    public String getName() {
+        return id;
+    }
+
+    public void setName(String id) {
+        this.id = id;
+        //TODO update Database
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+        //TODO update Database
+    }
+
+    public int getFolgen() {
+        return folgen;
+    }
+
+    public void setFolgen(int folgen) {
+        this.folgen = folgen;
+        //TODO update Database
+    }
+
+    public boolean isClearInv() {
+        return clearInv;
+    }
+
+    public void setClearInv(boolean clearInv) {
+        this.clearInv = clearInv;
+        //TODO update Database
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+        //TODO update Database
+    }
+
+    public int getStrikes() {
+        return strikes;
+    }
+
+    public void setStrikes(int strikes) {
+        this.strikes = strikes;
+        //TODO update Database
+    }
+
+    public DBTeam getTeam() {
+        return team;
+    }
+
+    public void setTeam(DBTeam team) {
+        this.team = team;
+        //TODO update Database
+    }
+
+    public List<DBPlayer> getKilled() {
+        return killed;
+    }
+
+    public void setKilled(List<DBPlayer> killed) {
+        this.killed = killed;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + id + '\'' +
+                ", position=" + location +
+                ", folgen=" + folgen +
+                ", clearInv=" + clearInv +
+                ", alive=" + alive +
+                ", strikes=" + strikes +
+                ", team=" + team.getName() +
+                ", killed=[" + killed.toString() +
+                "]}";
+    }
+}
