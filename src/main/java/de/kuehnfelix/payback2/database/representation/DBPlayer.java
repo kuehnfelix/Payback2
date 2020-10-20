@@ -1,22 +1,26 @@
 package de.kuehnfelix.payback2.database.representation;
 
-import org.bukkit.Location;
+import jdk.nashorn.internal.ir.annotations.Reference;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBPlayer {
-    private String id;
-    private Location location;
+    private String name;
+    private DBLocation location;
     private int folgen;
     private boolean clearInv;
     private boolean alive;
     private int strikes;
+    @BsonIgnore
     private DBTeam team;
     private List<DBPlayer> killed;
 
-    public DBPlayer(String name, Location location, int folgen, boolean clearInv, boolean alive, int strikes, DBTeam team, List<DBPlayer> killed) {
-        this.id = name;
+    public DBPlayer(String name, DBLocation location, int folgen, boolean clearInv, boolean alive, int strikes, DBTeam team, List<DBPlayer> killed) {
+        this.name = name;
         this.location = location;
         this.folgen = folgen;
         this.clearInv = clearInv;
@@ -27,8 +31,8 @@ public class DBPlayer {
     }
 
     public DBPlayer(String name) {
-        this.id = name;
-        location = new Location(null, 0,0,0);
+        this.name = name;
+        location = new DBLocation(null, 0,0,0);
         folgen = 0;
         clearInv = false;
         alive = true;
@@ -38,19 +42,19 @@ public class DBPlayer {
     }
 
     public String getName() {
-        return id;
+        return name;
     }
 
     public void setName(String id) {
-        this.id = id;
+        this.name = id;
         //TODO update Database
     }
 
-    public Location getLocation() {
+    public DBLocation getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation( DBLocation location) {
         this.location = location;
         //TODO update Database
     }
@@ -111,7 +115,7 @@ public class DBPlayer {
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + id + '\'' +
+                "name='" + name + '\'' +
                 ", position=" + location +
                 ", folgen=" + folgen +
                 ", clearInv=" + clearInv +
