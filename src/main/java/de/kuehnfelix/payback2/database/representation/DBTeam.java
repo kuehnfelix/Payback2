@@ -1,13 +1,13 @@
 package de.kuehnfelix.payback2.database.representation;
 
 import de.kuehnfelix.payback2.config.Config;
-import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.codecs.pojo.annotations.BsonId;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBTeam {
-    @BsonProperty(value = "_id")
+    @BsonId
     private String name;
     private List<DBPlayer> players;
     private int extraLives;
