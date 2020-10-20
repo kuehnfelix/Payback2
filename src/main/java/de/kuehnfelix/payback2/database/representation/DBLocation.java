@@ -5,7 +5,6 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import java.util.UUID;
 
 public class DBLocation {
-    @BsonId
     private UUID world;
     private int x, y, z;
 
