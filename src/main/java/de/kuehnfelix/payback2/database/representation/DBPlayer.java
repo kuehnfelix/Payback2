@@ -1,9 +1,6 @@
 package de.kuehnfelix.payback2.database.representation;
 
-import jdk.nashorn.internal.ir.annotations.Reference;
-import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
