@@ -10,6 +10,9 @@ import org.bson.codecs.DecoderContext;
 import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.EncoderContext;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class TeamCodec implements Codec<DBTeam> {
 
     private final Codec<Document> documentCodec;
@@ -32,7 +35,23 @@ public class TeamCodec implements Codec<DBTeam> {
 
     @Override
     public void encode(final BsonWriter bsonWriter, final DBTeam dbTeam, final EncoderContext encoderContext) {
-        //TODO implement encode
+        final Document document = new Document();
+
+        final String name = dbTeam.getName();
+        final ArrayList<String> players = new ArrayList<>(dbTeam.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList()));
+        final int extraLives = dbTeam.getExtraLives();
+
+        if(name != null) {
+            document.put("_id", name);
+        }
+
+        if(players != null) {
+            document.put("players", players);
+        }
+
+        document.put("extraLives", extraLives);
+
+        this.documentCodec.encode(bsonWriter, document, encoderContext);
     }
 
     @Override
