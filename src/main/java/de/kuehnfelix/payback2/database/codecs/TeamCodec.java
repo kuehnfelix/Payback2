@@ -31,7 +31,7 @@ public class TeamCodec implements Codec<DBTeam> {
     }
 
     @Override
-    public void encode(BsonWriter bsonWriter, DBTeam dbTeam, EncoderContext encoderContext) {
+    public void encode(final BsonWriter bsonWriter, final DBTeam dbTeam, final EncoderContext encoderContext) {
         //TODO implement encode
     }
 

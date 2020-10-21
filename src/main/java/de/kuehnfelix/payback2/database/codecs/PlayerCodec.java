@@ -11,13 +11,13 @@ import org.bson.codecs.EncoderContext;
 public class PlayerCodec implements Codec<DBPlayer> {
 
     @Override
-    public DBPlayer decode(BsonReader bsonReader, DecoderContext decoderContext) {
+    public DBPlayer decode(final BsonReader bsonReader, final DecoderContext decoderContext) {
         //TODO implement decode
         return null;
     }
 
     @Override
-    public void encode(BsonWriter bsonWriter, DBPlayer dbPlayer, EncoderContext encoderContext) {
+    public void encode(final BsonWriter bsonWriter, final DBPlayer dbPlayer, final EncoderContext encoderContext) {
         //TODO implement encode
     }
 
