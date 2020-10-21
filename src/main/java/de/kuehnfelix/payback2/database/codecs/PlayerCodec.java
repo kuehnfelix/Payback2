@@ -23,6 +23,6 @@ public class PlayerCodec implements Codec<DBPlayer> {
 
     @Override
     public Class<DBPlayer> getEncoderClass() {
-        return null;
+        return DBPlayer.class;
     }
 }
