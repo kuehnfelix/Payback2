@@ -11,6 +11,7 @@ import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.EncoderContext;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class TeamCodec implements Codec<DBTeam> {
@@ -38,7 +39,7 @@ public class TeamCodec implements Codec<DBTeam> {
         final Document document = new Document();
 
         final String name = dbTeam.getName();
-        final ArrayList<String> players = new ArrayList<>(dbTeam.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList()));
+        final List<String> players = dbTeam.getPlayers().stream().map(p -> p.getName()).collect(Collectors.toList());
         final int extraLives = dbTeam.getExtraLives();
 
         if(name != null) {
