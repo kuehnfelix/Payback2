@@ -14,6 +14,7 @@ public class DBTeam {
 
     public DBTeam(String name) {
         this.name = name;
+        this.players = new ArrayList<>();
         extraLives = Config.getConfig().getGameplay().getExtraTeamLives();
     }
 
