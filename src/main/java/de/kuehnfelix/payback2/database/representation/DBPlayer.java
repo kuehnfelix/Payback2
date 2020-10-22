@@ -1,13 +1,14 @@
 package de.kuehnfelix.payback2.database.representation;
 
 import org.bson.codecs.pojo.annotations.BsonIgnore;
+import org.bukkit.Location;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBPlayer {
     private String name;
-    private DBLocation location;
+    private Location location;
     private int folgen;
     private boolean clearInv;
     private boolean alive;
@@ -16,7 +17,7 @@ public class DBPlayer {
     private DBTeam team;
     private List<DBPlayer> killed;
 
-    public DBPlayer(String name, DBLocation location, int folgen, boolean clearInv, boolean alive, int strikes, DBTeam team, List<DBPlayer> killed) {
+    public DBPlayer(String name, Location location, int folgen, boolean clearInv, boolean alive, int strikes, DBTeam team, List<DBPlayer> killed) {
         this.name = name;
         this.location = location;
         this.folgen = folgen;
@@ -29,7 +30,7 @@ public class DBPlayer {
 
     public DBPlayer(String name) {
         this.name = name;
-        location = new DBLocation(null, 0,0,0);
+        location = new Location(null, 0,0,0);
         folgen = 0;
         clearInv = false;
         alive = true;
@@ -47,11 +48,11 @@ public class DBPlayer {
         //TODO update Database
     }
 
-    public DBLocation getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation( DBLocation location) {
+    public void setLocation( Location location) {
         this.location = location;
         //TODO update Database
     }

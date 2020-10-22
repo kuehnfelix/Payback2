@@ -1,7 +1,5 @@
 package de.kuehnfelix.payback2.database.codecs;
 
-import de.kuehnfelix.payback2.database.representation.DBLocation;
-import de.kuehnfelix.payback2.database.representation.DBPlayer;
 import org.bson.BsonReader;
 import org.bson.BsonWriter;
 import org.bson.Document;
@@ -9,8 +7,10 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.DecoderContext;
 import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.EncoderContext;
+import org.bukkit.Location;
+import org.bukkit.World;
 
-public class LocationCodec implements Codec<DBLocation> {
+public class LocationCodec implements Codec<Location> {
 
     private final Codec<Document> documentCodec;
 
@@ -23,21 +23,21 @@ public class LocationCodec implements Codec<DBLocation> {
     }
 
     @Override
-    public DBLocation decode(BsonReader bsonReader, DecoderContext decoderContext) {
+    public Location decode(BsonReader bsonReader, DecoderContext decoderContext) {
         return null;
     }
 
     @Override
-    public void encode(BsonWriter bsonWriter, DBLocation dbLocation, EncoderContext encoderContext) {
+    public void encode(BsonWriter bsonWriter, Location location, EncoderContext encoderContext) {
         final Document document = new Document();
 
-        final String uuid = dbLocation.getWorld().toString();
-        final int x = dbLocation.getX();
-        final int y = dbLocation.getY();
-        final int z = dbLocation.getZ();
+        final World world = location.getWorld();
+        final double x = location.getX();
+        final double y = location.getY();
+        final double z = location.getZ();
 
-        if(uuid != null) {
-            document.put("uuid", uuid);
+        if(world != null) {
+            document.put("uuid", world.getUID().toString());
         }
 
         document.put("x", x);
@@ -48,7 +48,7 @@ public class LocationCodec implements Codec<DBLocation> {
     }
 
     @Override
-    public Class<DBLocation> getEncoderClass() {
-        return DBLocation.class;
+    public Class<Location> getEncoderClass() {
+        return Location.class;
     }
 }

@@ -10,6 +10,7 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.DecoderContext;
 import org.bson.codecs.DocumentCodec;
 import org.bson.codecs.EncoderContext;
+import org.bukkit.Location;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class PlayerCodec implements Codec<DBPlayer> {
         final Document document = new Document();
 
         final String name = player.getName();
-        final DBLocation location = player.getLocation();
+        final Location location = player.getLocation();
         final int folgen = player.getFolgen();
         final boolean clearInv = player.isClearInv();
         final boolean alive = player.isAlive();
