@@ -29,7 +29,22 @@ public class LocationCodec implements Codec<DBLocation> {
 
     @Override
     public void encode(BsonWriter bsonWriter, DBLocation dbLocation, EncoderContext encoderContext) {
+        final Document document = new Document();
 
+        final String uuid = dbLocation.getWorld().toString();
+        final int x = dbLocation.getX();
+        final int y = dbLocation.getY();
+        final int z = dbLocation.getZ();
+
+        if(uuid != null) {
+            document.put("uuid", uuid);
+        }
+
+        document.put("x", x);
+        document.put("y", y);
+        document.put("z", z);
+
+        this.documentCodec.encode(bsonWriter, document, encoderContext);
     }
 
     @Override
