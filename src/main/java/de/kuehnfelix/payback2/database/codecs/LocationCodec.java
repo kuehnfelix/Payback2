@@ -1,5 +1,6 @@
 package de.kuehnfelix.payback2.database.codecs;
 
+import de.kuehnfelix.payback2.database.Database;
 import org.bson.BsonReader;
 import org.bson.BsonWriter;
 import org.bson.Document;
@@ -11,16 +12,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 public class LocationCodec implements Codec<Location> {
-
-    private final Codec<Document> documentCodec;
-
-    public LocationCodec() {
-        this.documentCodec = new DocumentCodec();
-    }
-
-    public LocationCodec(final Codec<Document> codec) {
-        this.documentCodec = codec;
-    }
 
     @Override
     public Location decode(BsonReader bsonReader, DecoderContext decoderContext) {
@@ -44,7 +35,7 @@ public class LocationCodec implements Codec<Location> {
         document.put("y", y);
         document.put("z", z);
 
-        this.documentCodec.encode(bsonWriter, document, encoderContext);
+        new DocumentCodec(Database.codecRegistry).encode(bsonWriter, document, encoderContext);
     }
 
     @Override

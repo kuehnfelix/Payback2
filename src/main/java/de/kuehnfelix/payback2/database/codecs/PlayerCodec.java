@@ -1,7 +1,6 @@
 package de.kuehnfelix.payback2.database.codecs;
 
-
-import de.kuehnfelix.payback2.database.representation.DBLocation;
+import de.kuehnfelix.payback2.database.Database;
 import de.kuehnfelix.payback2.database.representation.DBPlayer;
 import org.bson.BsonReader;
 import org.bson.BsonWriter;
@@ -17,14 +16,8 @@ import java.util.stream.Collectors;
 
 public class PlayerCodec implements Codec<DBPlayer> {
 
-    private final Codec<Document> documentCodec;
-
     public PlayerCodec() {
-        this.documentCodec = new DocumentCodec();
-    }
 
-    public PlayerCodec(final Codec<Document> codec) {
-        this.documentCodec = codec;
     }
 
     @Override
@@ -51,7 +44,7 @@ public class PlayerCodec implements Codec<DBPlayer> {
         }
 
         if(location != null) {
-            document.put("location", location);
+            document.put("location", new Document("", location));
         }
 
         if(folgen >= 0) {
@@ -74,7 +67,7 @@ public class PlayerCodec implements Codec<DBPlayer> {
             document.put("killed", killed);
         }
 
-        this.documentCodec.encode(bsonWriter, document, encoderContext);
+        new DocumentCodec(Database.codecRegistry).encode(bsonWriter, document, encoderContext);
     }
 
     @Override
