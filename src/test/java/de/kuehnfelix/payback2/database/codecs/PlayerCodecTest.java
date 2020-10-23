@@ -25,7 +25,7 @@ public class PlayerCodecTest {
                 fromProviders(PojoCodecProvider.builder().automatic(true).build())
         );
 
-        final PlayerCodec codec = new PlayerCodec(new DocumentCodec(pojoCodecRegistry));
+        final PlayerCodec codec = new PlayerCodec();
         final BsonDocument document = new BsonDocument();
         final BsonWriter bsonWriter = new BsonDocumentWriter(document);
         final EncoderContext encoderContext = EncoderContext.builder().build();
