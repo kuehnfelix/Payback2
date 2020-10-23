@@ -7,16 +7,23 @@ import com.mongodb.reactivestreams.client.MongoClients;
 import com.mongodb.reactivestreams.client.MongoCollection;
 import com.mongodb.reactivestreams.client.MongoDatabase;
 import de.kuehnfelix.payback2.Payback2;
+import de.kuehnfelix.payback2.database.codecs.LocationCodec;
+import de.kuehnfelix.payback2.database.codecs.PlayerCodec;
+import de.kuehnfelix.payback2.database.codecs.TeamCodec;
 import de.kuehnfelix.payback2.database.representation.DBTeam;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.logging.Level;
 
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import static org.bson.codecs.configuration.CodecRegistries.*;
 
 public class Database {
+
+    public static final CodecRegistry codecRegistry = fromRegistries(
+            MongoClientSettings.getDefaultCodecRegistry(),
+            fromCodecs(new PlayerCodec(), new TeamCodec(), new LocationCodec())
+    );
 
     private static MongoClient mongoClient;
     private static MongoDatabase database;
@@ -27,14 +34,9 @@ public class Database {
             mongoClient.close();
         }
 
-        CodecRegistry pojoCodecRegistry = fromRegistries(
-            MongoClientSettings.getDefaultCodecRegistry(),
-            fromProviders(PojoCodecProvider.builder().automatic(true).build())
-        );
-
         MongoClientSettings settings = MongoClientSettings.builder()
             .applyConnectionString(new ConnectionString(uri))
-            .codecRegistry(pojoCodecRegistry)
+            .codecRegistry(codecRegistry)
             .build();
 
         Database.mongoClient = MongoClients.create(settings);
@@ -49,5 +51,4 @@ public class Database {
         database = null;
         collection = null;
     }
-
 }
