@@ -1,6 +1,5 @@
 package de.kuehnfelix.payback2.database.representation;
 
-import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bukkit.Location;
 
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ public class DBPlayer {
     private boolean clearInv;
     private boolean alive;
     private int strikes;
-    @BsonIgnore
     private DBTeam team;
     private List<DBPlayer> killed;
 
