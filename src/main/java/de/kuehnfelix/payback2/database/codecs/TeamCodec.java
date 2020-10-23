@@ -35,10 +35,6 @@ public class TeamCodec implements Codec<DBTeam> {
             document.put("_id", name);
         }
 
-        if(players != null) {
-            document.put("players", players);
-        }
-
         document.put("extraLives", extraLives);
 
         new DocumentCodec(Database.codecRegistry).encode(bsonWriter, document, encoderContext);
