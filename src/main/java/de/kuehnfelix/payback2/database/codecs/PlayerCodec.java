@@ -44,7 +44,7 @@ public class PlayerCodec implements Codec<DBPlayer> {
         }
 
         if(location != null) {
-            document.put("location", new Document("", location));
+            document.put("location", location);
         }
 
         if(folgen >= 0) {
