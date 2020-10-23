@@ -59,10 +59,6 @@ public class PlayerCodec implements Codec<DBPlayer> {
             document.put("strikes", strikes);
         }
 
-        if (team != null) {
-            document.put("team", team);
-        }
-
         if (killed != null) {
             document.put("killed", killed);
         }
