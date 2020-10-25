@@ -5,6 +5,9 @@ import org.bukkit.Location;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representation class for player data saved to the Database
+ */
 public class DBPlayer {
     private String name;
     private Location location;
