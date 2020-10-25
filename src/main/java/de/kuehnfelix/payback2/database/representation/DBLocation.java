@@ -1,9 +1,10 @@
 package de.kuehnfelix.payback2.database.representation;
 
-import org.bson.codecs.pojo.annotations.BsonId;
-
 import java.util.UUID;
 
+/**
+ * Representation class for Locations saved to the Database
+ */
 public class DBLocation {
     private UUID world;
     private int x, y, z;
