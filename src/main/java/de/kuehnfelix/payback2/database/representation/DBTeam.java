@@ -6,6 +6,9 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representation class for team data saved to the Database
+ */
 public class DBTeam {
     @BsonId
     private String name;
